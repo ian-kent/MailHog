@@ -32,8 +32,17 @@ by default.
 
 All SMTP configuration is currently in lib/MailHog.pm.
 
+#### Development and production mode
+
+Like any other Mojolicious application, you can start
+MailHog using ```morbo``` or ```hypnotoad```.
+
+You can also use any existing Mojolicious plugins in MailHog.
+
 ### To-do
 
+* Refactor to use Mojo::Base instead of Moose
+* Use Mojo::EventEmitter for SMTP interface
 * Add REST API for other applications and web UI
 * Build web UI to interact with MailHog (potentially AngularJS/Bootstrap?)
 * Add backend storage for message persistence (M3MTA backend?)
@@ -44,6 +53,6 @@ Fork and send a pull request!
 
 ### Licence
 
-Copyright (C) 2014, Ian Kent (http://www.iankent.eu).
+Copyright ©‎ 2014, Ian Kent (http://www.iankent.eu).
 
 Released under MIT license, see [LICENSE](license) for details.
