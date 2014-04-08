@@ -25,7 +25,7 @@ The port specified is the Mojolicious application port,
 which currently does very little but will become the 
 web UI to MailHog.
 
-## SMTP server
+#### SMTP server
 
 The SMTP server will attempt to listen on port 25
 by default.
