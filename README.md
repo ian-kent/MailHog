@@ -13,12 +13,24 @@ Based on [Mojolicious](http://mojolicio.us), born out of [M3MTA](https://github.
 
 ### Getting started
 
+Install dependencies:
+
+```cpanm --installdeps .```
+
 Start MailHog:
 
 ```./bin/mailhog daemon --listen http://*:3000```
 
-It will attempt to listen on port 25 by default.
-All SMTP server configuration is in lib/MailHog.pm.
+The port specified is the Mojolicious application port,
+which currently does very little but will become the 
+web UI to MailHog.
+
+### SMTP
+
+The SMTP server will attempt to listen on port 25
+by default.
+
+All SMTP configuration is in lib/MailHog.pm.
 
 ### Licence
 
