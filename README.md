@@ -25,12 +25,22 @@ The port specified is the Mojolicious application port,
 which currently does very little but will become the 
 web UI to MailHog.
 
-### SMTP
+## SMTP server
 
 The SMTP server will attempt to listen on port 25
 by default.
 
-All SMTP configuration is in lib/MailHog.pm.
+All SMTP configuration is currently in lib/MailHog.pm.
+
+### To-do
+
+* Add REST API for other applications and web UI
+* Build web UI to interact with MailHog (potentially AngularJS/Bootstrap?)
+* Add backend storage for message persistence (M3MTA backend?)
+
+### Contributing
+
+Fork and send a pull request!
 
 ### Licence
 
