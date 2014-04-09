@@ -132,7 +132,7 @@ sub has_rfc {
 #-------------------------------------------------------------------------------
 
 sub start {
-    my ($self) = @_;
+    my ($self, $defer_ioloop) = @_;
 
     for my $port (@{$self->config->{ports}}) {
         MailHog::Log->info("Starting %s server on port %s", ref($self), $port);
@@ -146,7 +146,7 @@ sub start {
     }
 
     MailHog::Log->debug("Starting Mojo::IOLoop");
-    Mojo::IOLoop->start unless Mojo::IOLoop->is_running;
+    Mojo::IOLoop->start unless Mojo::IOLoop->is_running || $defer_ioloop;
 
     return;
 }

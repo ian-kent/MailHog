@@ -1,5 +1,7 @@
 package MailHog;
 
+use strict;
+use warnings;
 use Mojo::Base 'Mojolicious';
 use MailHog::Server::SMTP;
 use Mango;
@@ -62,12 +64,10 @@ sub startup {
 		return "250 $message->{id} message accepted for delivery";
 	});
 
-	$self->smtp->start;
+	$self->smtp->start(1);
 
 	my $r = $self->routes;
-	$r->get('/')->to(cb => sub {
-		shift->render(text => 'Welcome to MailHog');
-	});
+	$r->get('/')->to(cb => sub { shift->render('index'); });
 
 	return;
 }
