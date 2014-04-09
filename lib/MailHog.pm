@@ -2,9 +2,16 @@ package MailHog;
 
 use Mojo::Base 'Mojolicious';
 use MailHog::Server::SMTP;
+use Mango;
+use Mango::BSON 'bson_time';
 
 sub startup {
 	my $self = shift;
+
+    # Get a Mango connection
+    $self->helper(mango => sub {
+    	state $mango = Mango->new('mongodb://localhost:27017');
+    });
 
 	# Start the MTA backend
 	$self->helper(smtp => sub {
@@ -47,12 +54,14 @@ sub startup {
 		);
 		return $mailhog;
 	});
+
 	$self->smtp->on(queue_message => sub {
 		my ($message) = @_;
-		print "####### RECEIVED MESSAGE:\n";
-		use Data::Dumper; print Dumper $message;
+		# TODO async, caller expects return value
+		$self->mango->db('mailhog')->collection('messages')->insert({%$message, created => bson_time});
 		return "250 $message->{id} message accepted for delivery";
 	});
+
 	$self->smtp->start;
 
 	my $r = $self->routes;
