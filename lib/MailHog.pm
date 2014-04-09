@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Mojo::Base 'Mojolicious';
 use MailHog::Server::SMTP;
+use MailHog::Server::Message;
 use Mango;
 use Mango::BSON 'bson_time';
 
@@ -60,7 +61,8 @@ sub startup {
 	$self->smtp->on(queue_message => sub {
 		my ($message) = @_;
 		# TODO async, caller expects return value
-		$self->mango->db('mailhog')->collection('messages')->insert({%$message, created => bson_time});
+		my $content = MailHog::Server::Message->new->from_data($message->{data})->to_json;
+		$self->mango->db('mailhog')->collection('messages')->insert({%$message, created => bson_time, content => $content});
 		return "250 $message->{id} message accepted for delivery";
 	});
 
@@ -68,6 +70,7 @@ sub startup {
 
 	my $r = $self->routes;
 	$r->get('/')->to(cb => sub { shift->render('index'); });
+	$r->get('/api/v1/messages')->to('api-v1#list');
 
 	return;
 }
