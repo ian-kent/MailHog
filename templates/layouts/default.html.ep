@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mailhogApp">
   <head>
     <title>MailHog</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.js"></script>
+    <script src="/js/controllers.js"></script>
+    <style>
+      body, html { height: 100%; overflow: none; }
+      .navbar {
+        margin-bottom: 0;
+      }
+      .navbar-header img {
+        height: 35px;
+        margin: 8px 0 0 5px;
+        float: left;
+      }
+    </style>
   </head>
-  <body>
+  <body ng-controller="MailCtrl">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="navbar-header">
+        <img src="/images/hog.png">
+        <a class="navbar-brand" href="#">MailHog</a>
+      </div>
+    </nav>
     <%= content %>
   </body>
 </html>

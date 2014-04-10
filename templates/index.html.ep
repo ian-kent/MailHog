@@ -1,2 +1,64 @@
 % layout 'default';
-hi
+<style>
+  .messages {
+    height: 30%;
+  }
+  .preview {
+    height: 70%;
+    border-top: 1px solid #CCCCCC;
+  }
+  .preview #headers {
+    border-bottom: 1px solid #DDDDDD;
+  }
+  .selected {
+    background: #DADAFA;
+  }
+  table tbody {
+    overflow: scroll;
+  }
+</style>
+<div class="messages">
+  <table class="table">
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Subject</th>
+      <th>Received</th>
+      <th>Actions</th>
+    </tr>
+    <tbody>
+      <tr ng-repeat="message in messages" ng-click="selectMessage(message)" ng-class="{ selected: message == preview }">
+        <td>
+          {{ message.from.mailbox }}@{{ message.from.domain }}
+        </td>
+        <td>
+          <span ng-repeat="to in message.to">
+            {{ to.mailbox }}@{{ to.domain }}
+          </span>
+        </td>
+        <td>
+          {{ message.content.headers.Subject }}
+        </td>
+        <td>
+          {{ date(message.created) }}
+        </td>
+        <td>
+          <button class="btn btn-xs btn-default" title="Delete"><span class="glyphicon glyphicon-remove"></span></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="preview">
+  <table class="table" id="headers">
+    <tr ng-repeat="(header, value) in preview.content.headers">
+      <td>
+        {{ header }}
+      </td>
+      <td>
+        {{ value }}
+      </td>
+    </tr>
+  </table>
+  {{ preview.content.body }}
+</div>
