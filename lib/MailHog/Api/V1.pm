@@ -14,4 +14,12 @@ sub list {
 	});
 }
 
+sub delete {
+	my $self = shift;
+	$self->render_later;
+	$self->mango->db('mailhog')->collection('messages')->remove(sub {
+		$self->render(text => '');
+	});
+}
+
 1;

@@ -71,6 +71,7 @@ sub startup {
 	my $r = $self->routes;
 	$r->get('/')->to(cb => sub { shift->render('index'); });
 	$r->get('/api/v1/messages')->to('api-v1#list');
+	$r->post('/api/v1/messages/delete')->to('api-v1#delete');
 
 	return;
 }

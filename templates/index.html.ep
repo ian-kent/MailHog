@@ -16,7 +16,28 @@
   table tbody {
     overflow: scroll;
   }
+  table td {
+    padding: 2px 4px 2px 4px !important;
+  }
 </style>
+<div class="modal fade" id="confirm-delete-all">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Delete all messages?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete all messages?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteAllConfirm()">Delete all messages</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="messages">
   <table class="table">
     <tr>
