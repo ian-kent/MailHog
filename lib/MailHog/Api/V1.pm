@@ -1,6 +1,7 @@
 package MailHog::Api::V1;
 
 use Mojo::Base 'Mojolicious::Controller';
+use Mango::BSON 'bson_oid';
 
 sub list {
 	my $self = shift;
@@ -18,6 +19,14 @@ sub delete {
 	my $self = shift;
 	$self->render_later;
 	$self->mango->db('mailhog')->collection('messages')->remove(sub {
+		$self->render(text => '');
+	});
+}
+
+sub deleteOne {
+	my $self = shift;
+	$self->render_later;
+	$self->mango->db('mailhog')->collection('messages')->remove({ _id => bson_oid($self->stash('message_id'))}, sub {
 		$self->render(text => '');
 	});
 }

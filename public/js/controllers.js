@@ -24,6 +24,14 @@ mailhogApp.controller('MailCtrl', function ($scope, $http) {
   	$('#confirm-delete-all').modal('hide');
   	$http.post('/api/v1/messages/delete').success(function() {
   		$scope.refresh();
+  		$scope.preview = null;
+  	});
+  }
+
+  $scope.deleteOne = function(message) {
+  	$http.post('/api/v1/messages/' + message._id + '/delete').success(function() {
+  		if($scope.preview._id == message._id) $scope.preview = null;
+  		$scope.refresh();
   	});
   }
 });

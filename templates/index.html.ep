@@ -64,7 +64,7 @@
           {{ date(message.created) }}
         </td>
         <td>
-          <button class="btn btn-xs btn-default" title="Delete"><span class="glyphicon glyphicon-remove"></span></button>
+          <button class="btn btn-xs btn-default" title="Delete" ng-click="deleteOne(message)"><span class="glyphicon glyphicon-remove"></span></button>
         </td>
       </tr>
     </tbody>

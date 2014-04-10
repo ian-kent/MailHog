@@ -72,6 +72,7 @@ sub startup {
 	$r->get('/')->to(cb => sub { shift->render('index'); });
 	$r->get('/api/v1/messages')->to('api-v1#list');
 	$r->post('/api/v1/messages/delete')->to('api-v1#delete');
+	$r->post('/api/v1/messages/:message_id/delete')->to('api-v1#deleteOne');
 
 	return;
 }
