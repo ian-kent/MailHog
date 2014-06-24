@@ -5,6 +5,8 @@ Inspired by [MailCatcher](http://mailcatcher.me/), easier to install.
 
 Based on [Mojolicious](http://mojolicio.us), born out of [M3MTA](https://github.com/ian-kent/M3MTA).
 
+** No longer under development - see [Go-MailHog](https://github.com/ian-kent/Go-MailHog) **
+
 ### Requirements
 
 * A recent version of Perl (5.16+)
